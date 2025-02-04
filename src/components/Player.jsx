@@ -1,12 +1,20 @@
 import { useState } from "react"; //useState is used to refresh/re-excute on changes
 
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({
+  initialName,
+  symbol,
+  isActive,
+  onChangeName,
+}) {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
   function handleEditClick() {
     // setIsEditing(!isEditing);  NOT Recommended
     setIsEditing((isEditing) => !isEditing); // BEST practise
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   }
 
   function HandelChange(event) {
@@ -24,7 +32,7 @@ export default function Player({ initialName, symbol, isActive }) {
   }
 
   return (
-    <li className={isActive? 'active' : undefined}>
+    <li className={isActive ? "active" : undefined}>
       <span className="player">
         {editablePlayerName}
         <span className="player-symbol">{symbol}</span>

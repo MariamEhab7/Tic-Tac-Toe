@@ -1,17 +1,17 @@
-const initialBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
+// const initialBoard = [
+//   [null, null, null],
+//   [null, null, null],
+//   [null, null, null],
+// ];
 
-export default function GameBoard({ onSelectSquare, turns }) {
-  let gameBoard = initialBoard; // a computed value from gameTurns state
-  for (const turn of turns) {
-    const { square, player } = turn;
-    const { row, col } = square;
+export default function GameBoard({ onSelectSquare, board }) {
+  // let gameBoard = initialBoard; // a computed value from gameTurns state
+  // for (const turn of turns) {
+  //   const { square, player } = turn;
+  //   const { row, col } = square;
 
-    gameBoard[row][col] = player;
-  }
+  //   gameBoard[row][col] = player;
+  // }
 
   // If your state is object or array we should update it in immutable way "By creating a copy"
   //   const [gameBoard, setGameBoard] = useState(initialBoard);
@@ -27,7 +27,7 @@ export default function GameBoard({ onSelectSquare, turns }) {
 
   return (
     <ol id="game-board">
-      {gameBoard.map((row, rowIndex) => (
+      {board.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
             {row.map((playerSymbol, colIndex) => (
